@@ -1,0 +1,87 @@
+<html>
+  <head>
+    <title>Camera video effect</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/ml5@0.4.3/dist/ml5.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  </head>
+  <body>
+  <img src='media/images/logo.png' height="100px" width="auto"/>
+  <div id='effect-name'></div>
+  <div id='imgs'></div>
+  <div id='capture-timer-container'><div class="material-icons">query_builder</div><div id='capture-timer'>0s</div></div>
+  
+  <script>
+    window.onload = ()=>{
+      var scripts_src = ['functions.js' ,'particles.js', 'faces-control.js', 'effects-control.js', 'effects.js', 'faces.js', 'sketch.js', 'lib/p5.min.js'];
+      for (let script_src of scripts_src){
+        var script = document.createElement("script");
+        script.src = `js/${script_src}`;
+        document.body.appendChild(script);
+      }
+    }
+  </script>
+  </body>
+  <style>
+    :root{
+      --main-color: orange;
+      --main-color-dark: darkorange;
+    }
+    *{
+      font-family: 'Roboto' ,sans-serif;
+      user-select: none;
+    }
+    body{
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    } 
+    .hidden{
+      opacity: 0;
+      position: absolute;
+    }
+    .img, #canvas{
+      border-radius: 10px;
+      margin: 1px;
+    }
+    #canvas{
+      box-shadow: 0 0 10px rgb(0, 0, 0, 0.3);
+    }
+    #imgs{
+      max-width: 640 !important;
+      max-height: 490;
+      overflow-y: scroll;
+      display: grid;
+      align-items: center;
+      justify-content: center;
+      grid-template-columns: repeat(auto-fit, 160px);
+      column-gap: 5px;
+      row-gap: 5px;
+      box-shadow: 0 0 10px rgb(0, 0, 0, 0.5);
+      margin: 10px auto;
+      padding: 10px;
+      border-radius: 10px;
+      order: 1;
+    }
+    #imgs::-webkit-scrollbar {
+      display: none;
+    }
+    #capture-timer-container{
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      font-size: 25px;
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+    }
+    #capture-timer-container #capture-timer{
+      margin-left: 5px;
+    }
+  </style>
+</html>
